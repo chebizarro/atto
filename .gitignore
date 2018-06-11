@@ -4,3 +4,4 @@ mbgl/ca-bundle.crt
 mason_packages
 out.png
 out.pdf
+.vscode
