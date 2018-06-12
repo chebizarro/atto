@@ -58,3 +58,7 @@ func (m *Map) SetPitch(pitch float64) {
 func (m *Map) SetDebug(debugOptions MapDebugOptions) {
 	C.mbgl_map_set_debug(C.MbglMap(m.cptr), C.MbglMapDebugOptions(debugOptions))
 }
+
+func (m *Map) SetSize(size Size) {
+	C.mbgl_map_set_size(C.MbglMap(m.cptr), C.MbglSize{C.uint32_t(size.Width), C.uint32_t(size.Height)})
+}

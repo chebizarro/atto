@@ -156,6 +156,8 @@ void mbgl_map_set_pitch(MbglMap self, double pitch);
 
 void mbgl_map_set_debug(MbglMap self, MbglMapDebugOptions debugOptions);
 
+void mbgl_map_set_size(MbglMap self, MbglSize size);
+
 /**
  * @}
  */

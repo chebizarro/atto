@@ -148,7 +148,11 @@ void mbgl_map_set_pitch(MbglMap self, double pitch) {
 void mbgl_map_set_debug(MbglMap self, MbglMapDebugOptions debugOptions) {
 	(reinterpret_cast<Map*>(self))->setDebug(
 		static_cast<MapDebugOptions>(debugOptions)
-	);		
+	);
+}
+
+void mbgl_map_set_size(MbglMap self, MbglSize size) {
+	(reinterpret_cast<Map*>(self))->setSize({size.width, size.height});
 }
 
 MbglMapObserver mbgl_map_observer_null_observer() {
