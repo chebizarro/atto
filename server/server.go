@@ -58,7 +58,11 @@ func Start(port string) *http.Server {
 		threadPool := mbgl.NewThreadPool(runtime.NumCPU())
 		defer threadPool.Destroy()
 
-		
+		size := mbgl.Size{ uint32(*widthFlag), uint32(*heightFlag) }
+	
+		frontEnd := mbgl.NewHeadlessFrontend(size, pixelRatio, fileSource, threadPool)
+		defer frontEnd.Destroy()
+	
 		
 		log.Error(srv.ListenAndServe())
 		
