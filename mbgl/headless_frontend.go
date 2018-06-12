@@ -24,7 +24,7 @@ func (h *HeadlessFrontend) Reset() {
 }
 
 
-func (h *HeadlessFrontend) Render(_map Map) *Image {
+func (h *HeadlessFrontend) Render(_map *Map) *Image {
 	img := C.mbgl_headless_frontend_render(
 		C.MbglHeadlessFrontend(h.cptr),
 		C.MbglMap(_map.cptr))
@@ -42,7 +42,7 @@ func (h *HeadlessFrontend) RenderToFile(_map *Map, path string) {
 		cpath)
 }
 
-func NewHeadlessFrontend(size Size, pixelRatio float32, fileSource *FileSource, scheduler *Scheduler) *HeadlessFrontend {
+func NewHeadlessFrontend(size Size, pixelRatio float32, fileSource FileSource, scheduler Scheduler) *HeadlessFrontend {
 	f:= C.mbgl_headless_frontend_new(
 		C.MbglSize{C.uint32_t(size.Width), C.uint32_t(size.Height)},
 		C.float(pixelRatio),
