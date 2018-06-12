@@ -6,7 +6,7 @@ import (
 
 func TestNewMap(t *testing.T) {
 
-	var pixelRatio float32
+	var pixelRatio float64
 	pixelRatio = 1.0
 	
 	// The RunLoop is a hidden dependency of ThreadPool

@@ -26,10 +26,10 @@ func main() {
 	
 	flag.Parse()
 	
-	pixelRatio := float32(*pixelRatioFlag)
-	zoom := float32(*zoomFlag)
-	bearing := float32(*bearingFlag)
-	pitch := float32(*pitchFlag)        
+	pixelRatio := *pixelRatioFlag
+	zoom := *zoomFlag
+	bearing := *bearingFlag
+	pitch := *pitchFlag        
 
 	loop := mbgl.NewRunLoop()
 	defer loop.Destroy()

@@ -9,7 +9,7 @@ import (
 
 func TestImage(t *testing.T) {
 
-var pixelRatio float32 = 1
+var pixelRatio float64 = 1
     
     loop := NewRunLoop()
     defer loop.Destroy()
@@ -36,7 +36,7 @@ var pixelRatio float32 = 1
     latLng := NewLatLng(0,0)
     defer latLng.Destroy()
     
-    var zoom, bearing, pitch float32 = 0, 0, 0
+    var zoom, bearing, pitch float64 = 0, 0, 0
     
     pmap.SetLatLngZoom(latLng, zoom)
     pmap.SetBearing(bearing)
