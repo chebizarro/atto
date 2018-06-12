@@ -17,7 +17,7 @@ func NewMap(
 	scheduler Scheduler,
 	mapMode MapMode,
 	constrainMode ConstrainMode,
-	viewportMode ViewportMode) Map {
+	viewportMode ViewportMode) *Map {
 	
 	nmap := C.mbgl_map_new(
 		C.MbglRendererFrontend(renderer.cPtr()),
@@ -30,29 +30,31 @@ func NewMap(
 		C.MbglConstrainMode(constrainMode),
 		C.MbglViewportMode(viewportMode))
 	
-	return Map{ uintptr(nmap) }
+	gomap := Map{ uintptr(nmap) }
+	return &gomap
 }
 
-func (m Map) Destroy() {
+func (m *Map) Destroy() {
 	C.mbgl_map_destroy(C.MbglMap(m.cptr))
 }
 
-func (m Map) GetStyle() Style {
-	return Style{ uintptr(C.mbgl_map_get_style(C.MbglMap(m.cptr))) }
+func (m *Map) GetStyle() *Style {
+	style := Style{ uintptr(C.mbgl_map_get_style(C.MbglMap(m.cptr))) }
+	return &style
 }
 
-func (m Map) SetLatLngZoom(latLng LatLng, zoom float32) {
+func (m *Map) SetLatLngZoom(latLng *LatLng, zoom float32) {
 	C.mbgl_map_set_lat_lng_zoom(C.MbglMap(m.cptr), C.MbglLatLng(latLng.cptr), C.double(zoom))
 }
 
-func (m Map) SetBearing(degrees float32) {
+func (m *Map) SetBearing(degrees float32) {
 	C.mbgl_map_set_bearing(C.MbglMap(m.cptr), C.double(degrees))
 }
 
-func (m Map) SetPitch(pitch float32) {
+func (m *Map) SetPitch(pitch float32) {
 	C.mbgl_map_set_pitch(C.MbglMap(m.cptr), C.double(pitch))
 }
 
-func (m Map) SetDebug(debugOptions MapDebugOptions) {
+func (m *Map) SetDebug(debugOptions MapDebugOptions) {
 	C.mbgl_map_set_debug(C.MbglMap(m.cptr), C.MbglMapDebugOptions(debugOptions))
 }
