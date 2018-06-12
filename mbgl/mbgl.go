@@ -20,7 +20,7 @@ import (
 )
 
 // RenderPNG returns a PNG encoded buffer
-func RenderPNG(lat, lng float64, width, height, zoom int, url, style string) *bytes.Buffer {
+func RenderPNG(lat, lng, zoom float64, width, height int, url, style string) *bytes.Buffer {
 
 	loop := NewRunLoop()
 	defer loop.Destroy()
