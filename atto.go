@@ -61,9 +61,7 @@ func main() {
 	if *debugFlag {
 		pmap.SetDebug(mbgl.TileBorders | mbgl.ParseStatus)
 	}
-	
-	//frontEnd.RenderToFile(pmap, *outputFlag)
-	
+		
 	image := frontEnd.Render(pmap)
 	defer image.Destroy()
 	
