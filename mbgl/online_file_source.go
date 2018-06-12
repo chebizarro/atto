@@ -12,20 +12,20 @@ type OnlineFileSource struct {
 	cptr uintptr
 }
 
-func (o OnlineFileSource) cPtr() uintptr {
+func (o *OnlineFileSource) cPtr() uintptr {
 	return o.cptr
 }
 
-func (o OnlineFileSource) Destroy() {
+func (o *OnlineFileSource) Destroy() {
 	C.mbgl_online_file_source_destroy(C.MbglOnlineFileSource(o.cptr))
 }
 
-func NewOnlineFileSource() OnlineFileSource {
+func NewOnlineFileSource() *OnlineFileSource {
 	ofs := OnlineFileSource{uintptr(C.mbgl_online_file_source_new())}
-	return ofs
+	return &ofs
 }
 
-func (o OnlineFileSource) SetAPIBaseUrl(url string) {
+func (o *OnlineFileSource) SetAPIBaseUrl(url string) {
 	path := C.CString(url)
 	defer C.free(unsafe.Pointer(path))
 	ofs := C.MbglOnlineFileSource(o.cptr)
