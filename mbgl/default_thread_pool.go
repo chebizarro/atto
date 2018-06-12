@@ -9,14 +9,15 @@ type ThreadPool struct {
 	cptr uintptr
 }
 
-func (tp ThreadPool) cPtr() uintptr {
+func (tp *ThreadPool) cPtr() uintptr {
 	return tp.cptr
 }
 
-func (tp ThreadPool) Destroy() {
+func (tp *ThreadPool) Destroy() {
 	C.mbgl_thread_pool_destroy(C.MbglThreadPool(tp.cptr))
 }
 
-func NewThreadPool(count int) ThreadPool {
-	return ThreadPool{ uintptr(C.mbgl_thread_pool_new(C.size_t(count))) };
+func NewThreadPool(count int) *ThreadPool {
+	tp := ThreadPool{ uintptr(C.mbgl_thread_pool_new(C.size_t(count))) };
+	return &tp
 }
