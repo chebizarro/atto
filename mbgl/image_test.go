@@ -9,7 +9,7 @@ import (
 
 func TestImage(t *testing.T) {
 
-var pixelRatio float64 = 1
+	pixelRatio := 1.0
     
     loop := NewRunLoop()
     defer loop.Destroy()
